@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everyday sounds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://64.media.tumblr.com/93da73b10ea2eb2ac975e675bc85c148/1bd810e262b6bd72-79/s1280x1920/dd26ff467cd891da28878db22096b8871b5f7907.gif');
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .stop-all-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: red;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stop-all-button:hover {
+            transform: scale(1.05);
+            background: #cc0000;
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .stop-all-button:active {
+            transform: scale(0.95);
+        }
+
+        .description {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 20px;
+            line-height: 1.4;
+        }
+
+        .launchpad-container {
+            background: rgb(35, 35, 35);
+            padding: 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .launchpad-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px; 
+            max-width: 630px;
+            margin: 0 auto;
+        }
+
+        .launch-button {
+            width: 150px; 
+            height: 150px; 
+            border: 2px solid #ffffff; 
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background-size: cover; 
+            background-position: center; 
+        }
+
+
+        .launch-button.active {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.5);
+            filter: brightness(1.2);
+        }
+
+        /* 각 버튼의 색상과 이미지 */
+        .button-1 {
+            background-image: url('https://i.pinimg.com/originals/30/04/fb/3004fbc82b5bebf25f09b5f6489cf6e6.gif'); */
+        }
+        .button-2 { 
+background-image: url('https://i.gifer.com/Bk5c.gif'); */
+        }
+        .button-3 { 
+background-image: url('https://64.media.tumblr.com/54ef4775ee31c1dcd42c6c46b2347b03/cff23ce4c9e09102-3e/s500x750/fccb339cc7de8a1fd369a06b2fdbed5b580c6de3.gif'); */
+        }
+        .button-4 { 
+background-image: url('https://64.media.tumblr.com/c1185d85aa58105b314924dec49975b7/5939767a7653f661-4d/s540x810/7b5b850660780b1923f71cf462e316aec80f2819.gif'); */
+        }
+        .button-5 { 
+background-image: url('https://i.imgur.com/PiE92Aa.gif'); */
+        }
+        .button-6 { 
+background-image: url('https://64.media.tumblr.com/aa9f31fca78b5b76fa1d6b7a8bf4ebfb/tumblr_p74nb8096g1td4me2o1_400.gif'); */
+        }
+        .button-7 {
+            background-color: magenta;
+background-image: url('https://25.media.tumblr.com/9c64c375c52e2edf80cb92681e8aee49/tumblr_mvvh92RyBz1qmurn4o1_500.gif'); */
+        }
+        .button-8 {
+            background-color: yellow;
+            background-image: url('https://64.media.tumblr.com/e8fefb1e208f536f7b0106a9ca985273/ae860ec586ef0da7-30/s75x75_c1/d3afc03a2fb4296b325a37342b2ddccbab990196.gif'); */
+        }
+        .button-9 { 
+background-image: url('https://64.media.tumblr.com/fee26ce5ef3be9e30c10cea5c99a31ae/e5d26210e8feaf2b-45/s400x600/ea37dac0e0fca4ebfc4cb55a3d78a88539af4121.gif'); */
+        }
+        .button-10 { 
+background-image: url('https://64.media.tumblr.com/baf5e77851e219f86741924e9f265b6b/tumblr_nphu94BUxO1sfet3to1_r2_500.gif'); */
+        }
+        .button-11 { background-image: url('https://i.pinimg.com/originals/c6/a3/d8/c6a3d8ea0a63e1ed1b25b39eb015fd15.gif'); */
+        }
+        .button-12 { 
+background-image: url('https://gifbin.com/bin/082009/1251663059_dalmatian-riding-bike.gif'); */
+        }
+        .button-13 { 
+background-image: url('https://media.tenor.com/-mjSG2s8wawAAAAM/evkentgiförnek.gif'); */
+        }
+        .button-14 { 
+            background-color: aqua;
+background-image: url('https://64.media.tumblr.com/7208c87df7c76215551503d890aa0451/4b7a7334d0de1ff2-3b/s400x600/78d9d4ec1dbe473909e31a1c4358cb5823e7d55f.gif'); */
+        }
+        .button-15 { 
+background-image: url('https://64.media.tumblr.com/502a364248515a97f19274ffb04e0453/2360d8c65ae8f718-28/s540x810/5fd4068324aed71521238fc6340c2b16f95ad9e4.gif'); */
+        }
+        .button-16 { 
+background-image: url('https://64.media.tumblr.com/96165f788a641df4c66b03c36fdef7d0/e84811a3aa137eca-89/s500x750/2f54a8184623d2043bf3e1bc47bb0c1ecdcfb183.gif'); */
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 1200px) {
+            .launch-button {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .button-grid {
+                max-width: 510px; 
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .launchpad-container {
+                padding: 30px; 
+                margin: 20px;
+            }
+            
+            .launch-button {
+                width: 80px; 
+                height: 80px;
+            }
+            
+            .launchpad-title {
+                font-size: 2em;
+            }
+            
+            .button-grid {
+                gap: 8px; 
+                max-width: 350px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="launchpad-container">
+        <button class="stop-all-button" id="stopAllButton">⏹</button>
+        <h1 class="launchpad-title">Everyday sounds</h1>
+        <div class="button-grid">
+            <button class="launch-button button-1" data-audio="cafe_girls" data-src="https://taira-komori.net/sound_os2/environment01/cafe_girls.mp3"></button>
+            <button class="launch-button button-2" data-audio="coin_machine" data-src="https://taira-komori.net/sound_os2/environment01/coin_into_a_machine.mp3"></button>
+            <button class="launch-button button-3" data-audio="fluorescent_switch" data-src="https://taira-komori.net/sound_os2/electric01/fluorescent_switch3.mp3"></button>
+            <button class="launch-button button-4" data-audio="cutting_onion" data-src="https://taira-komori.net/sound_os2/cooking01/cutting_onion4.mp3"></button>
+            <button class="launch-button button-5" data-audio="shogi_piece" data-src="https://taira-komori.net/sound_os2/playing01/dropping_a_shogi_piece1.mp3"></button>
+            <button class="launch-button button-6" data-audio="phone_calling" data-src="https://taira-komori.net/sound_os2/electric01/phone_calling.mp3"></button>
+            <button class="launch-button button-7" data-audio="rolling_pencil" data-src="https://taira-komori.net/sound_os2/daily01/rolling_pencil.mp3"></button>
+            <button class="launch-button button-8" data-audio="coin" data-src="https://taira-komori.net/sound_os2/game01/coin07.mp3"></button>
+            <button class="launch-button button-9" data-audio="polishing" data-src="https://taira-komori.net/sound_os2/daily01/polishing2.mp3"></button>
+            <button class="launch-button button-10" data-audio="tray" data-src="https://taira-komori.net/sound_os2/putting01/putting_a_tray.mp3"></button>
+            <button class="launch-button button-11" data-audio="soda_can" data-src="https://taira-komori.net/sound_os2/eating01/opening_a_soda_can.mp3"></button>
+            <button class="launch-button button-12" data-audio="bicycle_bell" data-src="https://taira-komori.net/sound_os2/transfer01/bicycle_bell2.mp3"></button>
+            <button class="launch-button button-13" data-audio="drawer" data-src="https://taira-komori.net/sound_os2/daily01/finding_in_a_drawer1.mp3"></button>
+            <button class="launch-button button-14" data-audio="clock" data-src="https://taira-komori.net/sound_os2/electric01/clock3.mp3"></button>
+            <button class="launch-button button-15" data-audio="toilet_roll" data-src="https://taira-komori.net/sound_os2/daily01/toilet%20roll.mp3"></button>
+            <button class="launch-button button-16" data-audio="knocking" data-src="https://taira-komori.net/sound_os2/daily01/being_knocked2.mp3"></button>
+        </div>
+        <div class="description">
+            같은 버튼을 다시 누르면 해당 루프가 꺼집니다. 일상속의 리듬을 찾아보세요
+        </div>
+    </div>
+
+    <script>
+        class AudioLaunchpad {
+            constructor() {
+                this.buttons = document.querySelectorAll('.launch-button');
+                this.activeButtons = new Set();
+                this.audioContext = null;
+                this.intervalId = null;
+                this.playingAudios = new Map(); 
+                
+                this.init();
+            }
+
+            init() {
+                this.createAudioContext();
+                this.setupEventListeners();
+                this.startTempoSync();
+            }
+
+            createAudioContext() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.error('Web Audio API not supported');
+                }
+            }
+
+            setupEventListeners() {
+                this.buttons.forEach((button, index) => {
+                    button.addEventListener('click', () => this.toggleButton(button, index));
+                });
+                
+                // 전체정지 버튼 이벤트 리스너
+                const stopAllButton = document.getElementById('stopAllButton');
+                stopAllButton.addEventListener('click', () => this.stopAll());
+            }
+
+            toggleButton(button, index) {
+                if (this.activeButtons.has(index)) {
+                    // 버튼 비활성화
+                    this.activeButtons.delete(index);
+                    button.classList.remove('active');
+                    
+                    // 재생 중인 오디오 파일이 있으면 중단
+                    const audioSrc = button.dataset.src;
+                    if (audioSrc && this.playingAudios.has(audioSrc)) {
+                        const currentAudio = this.playingAudios.get(audioSrc);
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                        this.playingAudios.delete(audioSrc);
+                    }
+                } else {
+                    // 버튼 활성화
+                    this.activeButtons.add(index);
+                    button.classList.add('active');
+                }
+
+                // 템포 동기화 재시작
+                this.restartTempoSync();
+            }
+
+            playAudio(audioFile, button) {
+                // Web Audio API 톤만 처리 (오디오 파일은 startTempoSync에서 처리)
+                if (!this.audioContext) return;
+
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+
+                // 각 버튼마다 다른 주파수
+                const frequencies = {
+                    cafe_girls: 60, coin_machine: 200, fluorescent_switch: 440, cutting_onion: 4000,
+                    shogi_piece: 150, phone_calling: 200, rolling_pencil: 1000, coin: 6000,
+                    polishing: 3000, tray: 500, soda_can: 700, bicycle_bell: 900,
+                    drawer: 1100, clock: 1300, toilet_roll: 1500, knocking: 1700
+                };
+
+                const waveforms = ['sine', 'square', 'sawtooth', 'triangle'];
+                const waveform = waveforms[Math.floor(Math.random() * waveforms.length)];
+
+                oscillator.frequency.setValueAtTime(frequencies[audioFile] || 440, this.audioContext.currentTime);
+                oscillator.type = waveform;
+
+                gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.1);
+
+                oscillator.start(this.audioContext.currentTime);
+                oscillator.stop(this.audioContext.currentTime + 0.1);
+            }
+
+            startTempoSync() {
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                }
+                if (this.slowIntervalId) {
+                    clearInterval(this.slowIntervalId);
+                }
+                if (this.superSlowIntervalId) {
+                    clearInterval(this.superSlowIntervalId);
+                }
+
+                // 일반 버튼들 (0.5초마다 재생)
+                this.intervalId = setInterval(() => {
+                    this.playActiveButtons();
+                }, 500);
+
+                // 8번 버튼 (5초마다 재생)
+                this.slowIntervalId = setInterval(() => {
+                    this.playButton8();
+                }, 5000);
+
+                // 12번 버튼 (7초마다 재생)
+                this.superSlowIntervalId = setInterval(() => {
+                    this.playButton12();
+                }, 7000);
+            }
+
+            playActiveButtons() {
+                // 모든 활성 버튼을 동시에 재생 (8번, 12번 버튼 제외)
+                const playPromises = [];
+                
+                this.activeButtons.forEach(index => {
+                    // 8번, 12번 버튼은 제외 (각각 다른 주기로 재생)
+                    if (index === 7 || index === 11) return;
+                    
+                    const button = this.buttons[index];
+                    const audioFile = button.dataset.audio;
+                    
+                    // 오디오 파일 버튼들은 동시에 시작하도록 처리
+                    if (button.dataset.src) {
+                        const audioSrc = button.dataset.src;
+                        if (audioSrc && !this.playingAudios.has(audioSrc)) {
+                            const audio = new Audio(audioSrc);
+                            audio.volume = 0.5;
+                            audio.currentTime = 0;
+                            
+                            // 재생 중인 오디오로 등록
+                            this.playingAudios.set(audioSrc, audio);
+                            
+                            // 오디오 재생 완료 시 맵에서 제거
+                            audio.addEventListener('ended', () => {
+                                this.playingAudios.delete(audioSrc);
+                            });
+                            
+                            // 동시 재생을 위해 Promise 사용
+                            const playPromise = audio.play().catch(e => console.log('Audio play failed:', e));
+                            playPromises.push(playPromise);
+                        }
+                    } else {
+                        // Web Audio API 톤은 즉시 재생
+                        this.playAudio(audioFile, button);
+                    }
+                });
+                
+                // 모든 오디오 파일이 동시에 시작되도록 대기
+                Promise.all(playPromises).catch(e => console.log('Some audio failed to play:', e));
+            }
+
+            playButton8() {
+                // 8번 버튼만 재생 (3초마다)
+                if (this.activeButtons.has(7)) {
+                    const button = this.buttons[7];
+                    const audioFile = button.dataset.audio;
+                    
+                    if (button.dataset.src) {
+                        const audioSrc = button.dataset.src;
+                        if (audioSrc && !this.playingAudios.has(audioSrc)) {
+                            const audio = new Audio(audioSrc);
+                            audio.volume = 0.5;
+                            audio.currentTime = 0;
+                            
+                            this.playingAudios.set(audioSrc, audio);
+                            
+                            audio.addEventListener('ended', () => {
+                                this.playingAudios.delete(audioSrc);
+                            });
+                            
+                            audio.play().catch(e => console.log('Audio play failed:', e));
+                        }
+                    } else {
+                        this.playAudio(audioFile, button);
+                    }
+                }
+            }
+
+            playButton12() {
+                // 12번 버튼만 재생 (8초마다)
+                if (this.activeButtons.has(11)) {
+                    const button = this.buttons[11];
+                    const audioFile = button.dataset.audio;
+                    
+                    if (button.dataset.src) {
+                        const audioSrc = button.dataset.src;
+                        if (audioSrc && !this.playingAudios.has(audioSrc)) {
+                            const audio = new Audio(audioSrc);
+                            audio.volume = 0.5;
+                            audio.currentTime = 0;
+                            
+                            this.playingAudios.set(audioSrc, audio);
+                            
+                            audio.addEventListener('ended', () => {
+                                this.playingAudios.delete(audioSrc);
+                            });
+                            
+                            audio.play().catch(e => console.log('Audio play failed:', e));
+                        }
+                    } else {
+                        this.playAudio(audioFile, button);
+                    }
+                }
+            }
+
+            stopAll() {
+                // 모든 활성 버튼 비활성화
+                this.activeButtons.clear();
+                
+                // 모든 버튼의 active 클래스 제거
+                this.buttons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // 모든 재생 중인 오디오 정지
+                this.playingAudios.forEach(audio => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                });
+                this.playingAudios.clear();
+                
+                // 모든 인터벌 정리
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                }
+                if (this.slowIntervalId) {
+                    clearInterval(this.slowIntervalId);
+                }
+                if (this.superSlowIntervalId) {
+                    clearInterval(this.superSlowIntervalId);
+                }
+            }
+
+            restartTempoSync() {
+                // 기존 인터벌들 정리
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                }
+                if (this.slowIntervalId) {
+                    clearInterval(this.slowIntervalId);
+                }
+                if (this.superSlowIntervalId) {
+                    clearInterval(this.superSlowIntervalId);
+                }
+                this.startTempoSync();
+            }
+        }
+
+        // 페이지 로드 시 런치패드 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            new AudioLaunchpad();
+        });
+
+        // 사용자 상호작용 후 오디오 컨텍스트 시작
+        document.addEventListener('click', () => {
+            if (window.audioLaunchpad && window.audioLaunchpad.audioContext && window.audioLaunchpad.audioContext.state === 'suspended') {
+                window.audioLaunchpad.audioContext.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
